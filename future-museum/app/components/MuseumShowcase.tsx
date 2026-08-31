@@ -1,4 +1,5 @@
 import { ExternalLink, Lightbulb, PlayCircle } from 'lucide-react';
+import Image from 'next/image';
 
 import { exhibits, type Exhibit } from '../../data/exhibits';
 
@@ -28,6 +29,13 @@ function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
         preload="none"
       >
         <source src={exhibit.media.src} type="video/mp4" />
+        <track
+          default
+          kind="captions"
+          label="中文说明"
+          src={`/captions/${exhibit.id}.vtt`}
+          srcLang="zh-CN"
+        />
       </video>
     );
   }
@@ -47,7 +55,15 @@ export function MuseumShowcase() {
       <section className="exhibits" id="exhibits" aria-label="七个科技主题">
         {exhibits.map((exhibit, index) => (
           <article className="exhibit" id={exhibit.id} key={exhibit.id}>
-            <img className="exhibit__hero" src={exhibit.image} alt={exhibit.alt} loading={index < 2 ? 'eager' : 'lazy'} />
+            <Image
+              alt={exhibit.alt}
+              className="exhibit__hero"
+              fill
+              priority={index < 2}
+              sizes="100vw"
+              src={exhibit.image}
+              unoptimized
+            />
             <div className="exhibit__shade" />
             <div className="exhibit__copy">
               <div className="exhibit__number">{String(index + 1).padStart(2, '0')} / 07</div>

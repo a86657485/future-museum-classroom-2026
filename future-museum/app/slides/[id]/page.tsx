@@ -1,4 +1,5 @@
 import { exhibits } from '../../../data/exhibits';
+import Image from 'next/image';
 
 export function generateStaticParams() {
   return exhibits.map((exhibit) => ({ id: exhibit.id }));
@@ -18,7 +19,7 @@ export default async function SlidePage({
 
   return (
     <main className="ppt-slide" data-slide-ready="true">
-      <img src={exhibit.image} alt="" />
+      <Image src={exhibit.image} alt="" fill priority sizes="1920px" unoptimized />
       <div className="ppt-slide__shade" />
       <div className="ppt-slide__header">
         <span>信息科技 · 开学第一课</span>
