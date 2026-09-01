@@ -4,8 +4,13 @@ import Image from 'next/image';
 import { exhibits, type Exhibit } from '../../data/exhibits';
 
 import { MuseumEntrance } from './MuseumEntrance';
+import { SeedRealtimeCarousel } from './SeedRealtimeCarousel';
 
 function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
+  if (exhibit.media.kind === 'carousel') {
+    return <SeedRealtimeCarousel scenes={exhibit.media.scenes} />;
+  }
+
   if (exhibit.media.kind === 'iframe') {
     return (
       <iframe

@@ -12,6 +12,16 @@ export type Exhibit = {
   source: string;
   media:
     | { kind: 'video'; src: string; poster?: string }
+    | {
+        kind: 'carousel';
+        scenes: readonly {
+          title: string;
+          description: string;
+          src: string;
+          poster: string;
+          captions: string;
+        }[];
+      }
     | { kind: 'iframe'; src: string; title: string }
     | { kind: 'official-page' };
 };
@@ -30,9 +40,30 @@ export const exhibits: Exhibit[] = [
     officialUrl: 'https://seed.bytedance.com/zh/SeedRealtime',
     source: '字节跳动 Seed 官网',
     media: {
-      kind: 'video',
-      src: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omseu8bpt.mp4',
-      poster: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej0civ.jpeg',
+      kind: 'carousel',
+      scenes: [
+        {
+          title: '多人交错对话',
+          description: '同时认人、辨声和理解讨论内容，在合适的时机接话。',
+          src: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej1mh2.mp4',
+          poster: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omseizyso.jpg',
+          captions: '/captions/seedrealtime-multi-speaker.vtt',
+        },
+        {
+          title: '跨语言交流',
+          description: '结合实时画面理解用户所处场景，提供更有针对性的翻译与帮助。',
+          src: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej20yk.mp4',
+          poster: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej05r1.png',
+          captions: '/captions/seedrealtime-cross-language.vtt',
+        },
+        {
+          title: '博物馆主动讲解',
+          description: '持续关注参观目标，在目标出现时主动提醒，并结合画面自然讲解。',
+          src: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omseu8bpt.mp4',
+          poster: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej0civ.jpeg',
+          captions: '/captions/seedrealtime-museum.vtt',
+        },
+      ],
     },
   },
   {

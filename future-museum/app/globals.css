@@ -444,6 +444,58 @@ html { scroll-behavior: smooth; }
 
 .exhibit__media > p svg { flex: 0 0 auto; width: 1rem; color: #ff8a68; }
 
+.scene-carousel {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.scene-carousel__caption {
+  display: grid;
+  min-height: 3.35rem;
+  gap: 0.2rem;
+  padding: 0.1rem 0.35rem 0;
+}
+
+.scene-carousel__caption strong {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.scene-carousel__caption span {
+  color: #b9cbd4;
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.scene-carousel__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 1.65rem;
+}
+
+.scene-carousel__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #8b9aa5;
+  cursor: pointer;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.scene-carousel__dot:hover {
+  transform: scale(1.18);
+  background: #c9dce7;
+}
+
+.scene-carousel__dot[aria-selected='true'] {
+  background: #4d72ff;
+  box-shadow: 0 0 0 0.28rem rgb(77 114 255 / 22%);
+}
+
 .museum-footer {
   display: flex;
   align-items: center;
