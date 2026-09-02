@@ -25,7 +25,11 @@ describe('museum entrance', () => {
 
     const sceneTabs = screen.getAllByRole('tab', { name: /播放场景/ });
     expect(sceneTabs).toHaveLength(3);
-    expect(screen.getByText('多人交错对话')).toBeInTheDocument();
+    expect(screen.getByText('辅导学生读英语')).toBeInTheDocument();
+    expect(screen.getByTestId('seedrealtime-video')).toHaveAttribute(
+      'poster',
+      expect.stringContaining('5pq1omsej1cae.jpeg'),
+    );
 
     await user.click(sceneTabs[1]);
 
@@ -35,5 +39,39 @@ describe('museum entrance', () => {
       'poster',
       expect.stringContaining('5pq1omsej05r1.png'),
     );
+  });
+
+  it('switches between Seedance official showcase videos with prompts', async () => {
+    const user = userEvent.setup();
+    render(<Home />);
+
+    expect(screen.getByText('更长叙事，更稳掌控')).toBeInTheDocument();
+    expect(screen.getByText(/老社区理发店/)).toBeInTheDocument();
+    expect(screen.getByTestId('seedance-video')).toHaveAttribute(
+      'poster',
+      '/videos/seedance-barbershop.jpg',
+    );
+
+    const prev = screen.getByRole('button', { name: '上一个案例' });
+    expect(prev).toBeDisabled();
+
+    await user.click(screen.getByRole('button', { name: '下一个案例' }));
+
+    expect(screen.getByText('精细化参考与编辑')).toBeInTheDocument();
+    expect(screen.getByText(/纸片小狗/)).toBeInTheDocument();
+    expect(screen.getByTestId('seedance-video')).toHaveAttribute(
+      'poster',
+      '/videos/seedance-paper-dog.jpg',
+    );
+
+    await user.click(screen.getByRole('button', { name: '下一个案例' }));
+
+    expect(screen.getByText('为专业视频创作而生')).toBeInTheDocument();
+    expect(screen.getByText(/白模参考视频/)).toBeInTheDocument();
+    expect(screen.getByTestId('seedance-video')).toHaveAttribute(
+      'poster',
+      '/videos/seedance-whitebox.jpg',
+    );
+    expect(screen.getByRole('button', { name: '下一个案例' })).toBeDisabled();
   });
 });

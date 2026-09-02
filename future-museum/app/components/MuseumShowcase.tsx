@@ -4,11 +4,16 @@ import Image from 'next/image';
 import { exhibits, type Exhibit } from '../../data/exhibits';
 
 import { MuseumEntrance } from './MuseumEntrance';
+import { SeedanceCarousel } from './SeedanceCarousel';
 import { SeedRealtimeCarousel } from './SeedRealtimeCarousel';
 
 function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
   if (exhibit.media.kind === 'carousel') {
     return <SeedRealtimeCarousel scenes={exhibit.media.scenes} />;
+  }
+
+  if (exhibit.media.kind === 'prompt-carousel') {
+    return <SeedanceCarousel scenes={exhibit.media.scenes} />;
   }
 
   if (exhibit.media.kind === 'iframe') {

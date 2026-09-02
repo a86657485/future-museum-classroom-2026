@@ -22,6 +22,17 @@ export type Exhibit = {
           captions: string;
         }[];
       }
+    | {
+        kind: 'prompt-carousel';
+        scenes: readonly {
+          title: string;
+          description: string;
+          src: string;
+          poster: string;
+          captions: string;
+          prompt: string;
+        }[];
+      }
     | { kind: 'iframe'; src: string; title: string }
     | { kind: 'official-page' };
 };
@@ -43,11 +54,11 @@ export const exhibits: Exhibit[] = [
       kind: 'carousel',
       scenes: [
         {
-          title: '多人交错对话',
-          description: '同时认人、辨声和理解讨论内容，在合适的时机接话。',
-          src: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej1mh2.mp4',
-          poster: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omseizyso.jpg',
-          captions: '/captions/seedrealtime-multi-speaker.vtt',
+          title: '辅导学生读英语',
+          description: '在家人通话等背景声中，跟随学生指向的动物图片，纠正英语发音并给出例句。',
+          src: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omseo6r3h.mp4',
+          poster: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/lapzild-tss/ljhwZthlaukjlkulzlp/user-upload/5pq1omsej1cae.jpeg',
+          captions: '/captions/seedrealtime-english-tutoring.vtt',
         },
         {
           title: '跨语言交流',
@@ -78,7 +89,35 @@ export const exhibits: Exhibit[] = [
     alt: '纸面分镜变成连续电影画面的概念图',
     officialUrl: 'https://seed.bytedance.com/zh/seedance2_5',
     source: '字节跳动 Seed 官网',
-    media: { kind: 'official-page' },
+    media: {
+      kind: 'prompt-carousel',
+      scenes: [
+        {
+          title: '更长叙事，更稳掌控',
+          description: '单段视频时长提升至 30 秒，并支持两次视频延长，叙事完整且精彩。',
+          src: '/videos/seedance-barbershop.mp4',
+          poster: '/videos/seedance-barbershop.jpg',
+          captions: '/captions/seedance-barbershop.vtt',
+          prompt: '一家老社区理发店即将打烊。外面天色已经变暗，街道微蓝，店内是暖黄色灯光。墙上有老照片、旧理发证书、褪色的顾客合影。人物设定：理发师，客人，两人关系自然熟悉，像多年社区老友，不要夸张表演。……[官网省略约 1250 字]',
+        },
+        {
+          title: '精细化参考与编辑',
+          description: '更好理解参考视频的意图与镜头语言，从动态迁移升级为创意演绎。',
+          src: '/videos/seedance-paper-dog.mp4',
+          poster: '/videos/seedance-paper-dog.jpg',
+          captions: '/captions/seedance-paper-dog.vtt',
+          prompt: '[参考生成] 整体内容要求：2D角色与3D世界的趣味交互，电影质感，可爱温馨，真实场景；角色设定：纸片小狗 @图片1 大小与拳头一致，并且为二维存在2D，纸片小狗 @图片1 的侧面是一张纸的厚度，纸片小狗 @图片1 的四肢与耳朵是可拆分的纸片在表达角色动作和情绪是可与躯干分离，纸片小狗 @图片1 一切的动作都有像定格动画一样的抽帧效果；黄色小狗 @图片2，真实存在的黄色幼犬。……[官网省略约 730 字]',
+        },
+        {
+          title: '为专业视频创作而生',
+          description: '提供白模控制、绿幕编辑等进阶能力，配合专业运镜与表演调度。',
+          src: '/videos/seedance-whitebox.mp4',
+          poster: '/videos/seedance-whitebox.jpg',
+          captions: '/captions/seedance-whitebox.vtt',
+          prompt: '以白模参考视频作为整支视频唯一的运镜、镜头节奏、景别变化、主体运动轨迹和镜头调度参考。结合各阶段关键帧参考图，生成一部30秒电影级3D动画短片，整体风格梦幻、童话、温暖，具有儿童幻想色彩，角色外形与各阶段的关键帧保持一致，不要改变角色形象，人物表情情绪随场景变化而改变。……[官网省略约 1000 字]',
+        },
+      ],
+    },
   },
   {
     id: 'qwen-vibe-coding',
