@@ -612,11 +612,6 @@ html { scroll-behavior: smooth; }
   animation: video-zoom-in 220ms ease;
 }
 
-.video-zoom--active iframe.exhibit__video {
-  width: min(92vw, calc(88vh * 16 / 9));
-  aspect-ratio: 16 / 9;
-}
-
 @keyframes video-zoom-in {
   from { transform: scale(0.82); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
@@ -641,32 +636,11 @@ html { scroll-behavior: smooth; }
   transition: background 160ms ease, transform 160ms ease;
 }
 
-.video-zoom__open {
-  position: absolute;
-  top: 1.35rem;
-  right: 1.45rem;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  padding: 0;
-  border: 1px solid rgb(255 255 255 / 30%);
-  border-radius: 50%;
-  color: #fff;
-  background: rgb(7 19 30 / 55%);
-  cursor: pointer;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.video-zoom__open:hover,
 .video-zoom__close:hover {
   transform: scale(1.08);
   background: rgb(255 255 255 / 22%);
 }
 
-.video-zoom__open svg,
 .video-zoom__close svg { width: 1.2rem; height: 1.2rem; }
 
 .museum-footer {

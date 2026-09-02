@@ -128,9 +128,9 @@ export const exhibits: Exhibit[] = [
     officialUrl: 'https://qwen.ai/blog?id=qwen3.5-omni',
     source: 'Qwen 官方博客与官方视频',
     media: {
-      kind: 'iframe',
-      src: 'https://player.bilibili.com/player.html?bvid=BV1RZXaB7Ewn&page=1&high_quality=1&danmaku=0&autoplay=0',
-      title: 'Qwen3.5-Omni 官方演示',
+      kind: 'video',
+      src: '/videos/qwen-vibe-coding.mp4',
+      poster: '/videos/qwen-vibe-coding.jpg',
     },
   },
   {
@@ -161,9 +161,9 @@ export const exhibits: Exhibit[] = [
     officialUrl: 'https://www.unitree.com/g1/',
     source: '宇树科技官网与官方视频',
     media: {
-      kind: 'iframe',
-      src: 'https://player.bilibili.com/player.html?bvid=BV1QW42197LE&page=1&high_quality=1&danmaku=0&autoplay=0',
-      title: '宇树科技 G1 官方视频',
+      kind: 'video',
+      src: '/videos/unitree-g1.mp4',
+      poster: '/videos/unitree-g1.jpg',
     },
   },
   {
