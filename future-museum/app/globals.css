@@ -150,6 +150,7 @@ a {
   margin-top: 2rem;
   border-radius: 999px;
   padding: 0 1.45rem 0 1.65rem;
+  color: #fff;
   background: var(--museum-ink);
   box-shadow: 0 1.2rem 2.8rem rgb(7 27 49 / 20%);
   font-weight: 700;
@@ -366,14 +367,6 @@ html { scroll-behavior: smooth; }
   line-height: 1.85;
 }
 
-.exhibit__boundary {
-  max-width: 40rem;
-  margin: 1rem 0 0;
-  color: #b9cbd4;
-  font-size: 0.85rem;
-  line-height: 1.7;
-}
-
 .exhibit__actions {
   display: flex;
   align-items: center;
@@ -400,13 +393,27 @@ html { scroll-behavior: smooth; }
 .exhibit__actions span { color: #aec2cd; font-size: 0.72rem; }
 
 .exhibit__media {
+  position: relative;
   align-self: end;
   padding: 0.8rem;
   border: 1px solid rgb(255 255 255 / 24%);
   border-radius: 0.3rem 2.4rem 0.3rem 0.3rem;
-  background: rgb(5 18 31 / 64%);
   box-shadow: 0 2rem 5rem rgb(0 0 0 / 28%);
+}
+
+/* 背景与模糊放在伪元素上，避免 backdrop-filter 成为 fixed 定位的 containing block */
+.exhibit__media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(5 18 31 / 64%);
   backdrop-filter: blur(14px);
+}
+
+.exhibit__media > * {
+  position: relative;
+  z-index: 1;
 }
 
 .exhibit__video,
@@ -579,6 +586,58 @@ html { scroll-behavior: smooth; }
   color: #ff8a68;
   font-size: 0.72rem;
 }
+
+.video-zoom--active {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgb(2 8 16 / 88%);
+  backdrop-filter: blur(6px);
+}
+
+.video-zoom--active .exhibit__video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  aspect-ratio: auto;
+  animation: video-zoom-in 220ms ease;
+}
+
+@keyframes video-zoom-in {
+  from { transform: scale(0.82); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.video-zoom__close {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.4rem;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.video-zoom__close:hover {
+  transform: scale(1.08);
+  background: rgb(255 255 255 / 22%);
+}
+
+.video-zoom__close svg { width: 1.2rem; height: 1.2rem; }
 
 .museum-footer {
   display: flex;

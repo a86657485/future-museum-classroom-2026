@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import Home from '../app/page';
@@ -73,5 +73,21 @@ describe('museum entrance', () => {
       '/videos/seedance-whitebox.jpg',
     );
     expect(screen.getByRole('button', { name: '下一个案例' })).toBeDisabled();
+  });
+
+  it('zooms the video to the center of the screen on play and closes on request', () => {
+    render(<Home />);
+
+    const video = screen.getByTestId('seedrealtime-video');
+    const stage = video.closest('.video-zoom');
+    expect(stage).not.toHaveClass('video-zoom--active');
+
+    fireEvent.play(video);
+
+    expect(stage).toHaveClass('video-zoom--active');
+
+    fireEvent.click(screen.getByRole('button', { name: '关闭放大播放' }));
+
+    expect(stage).not.toHaveClass('video-zoom--active');
   });
 });

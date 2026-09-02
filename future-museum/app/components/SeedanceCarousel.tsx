@@ -3,6 +3,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef, useState } from 'react';
 
+import { ZoomableVideo } from './ZoomableVideo';
+
 type Scene = {
   title: string;
   description: string;
@@ -27,25 +29,14 @@ export function SeedanceCarousel({ scenes }: { scenes: readonly Scene[] }) {
 
   return (
     <div className="prompt-carousel">
-      <video
-        className="exhibit__video"
-        controls
+      <ZoomableVideo
+        captions={activeScene.captions}
         data-testid="seedance-video"
         key={activeScene.src}
-        playsInline
         poster={activeScene.poster}
-        preload="none"
-        ref={videoRef}
-      >
-        <source src={activeScene.src} type="video/mp4" />
-        <track
-          default
-          kind="captions"
-          label="中文说明"
-          src={activeScene.captions}
-          srcLang="zh-CN"
-        />
-      </video>
+        src={activeScene.src}
+        videoRef={videoRef}
+      />
 
       <div className="prompt-carousel__header">
         <div className="prompt-carousel__caption" aria-live="polite">

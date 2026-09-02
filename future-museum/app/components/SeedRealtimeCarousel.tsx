@@ -2,6 +2,8 @@
 
 import { useRef, useState } from 'react';
 
+import { ZoomableVideo } from './ZoomableVideo';
+
 type Scene = {
   title: string;
   description: string;
@@ -23,25 +25,14 @@ export function SeedRealtimeCarousel({ scenes }: { scenes: readonly Scene[] }) {
 
   return (
     <div className="scene-carousel">
-      <video
-        className="exhibit__video"
-        controls
+      <ZoomableVideo
+        captions={activeScene.captions}
         data-testid="seedrealtime-video"
         key={activeScene.src}
-        playsInline
         poster={activeScene.poster}
-        preload="none"
-        ref={videoRef}
-      >
-        <source src={activeScene.src} type="video/mp4" />
-        <track
-          default
-          kind="captions"
-          label="中文说明"
-          src={activeScene.captions}
-          srcLang="zh-CN"
-        />
-      </video>
+        src={activeScene.src}
+        videoRef={videoRef}
+      />
 
       <div className="scene-carousel__caption" aria-live="polite">
         <strong>{activeScene.title}</strong>

@@ -6,6 +6,7 @@ import { exhibits, type Exhibit } from '../../data/exhibits';
 import { MuseumEntrance } from './MuseumEntrance';
 import { SeedanceCarousel } from './SeedanceCarousel';
 import { SeedRealtimeCarousel } from './SeedRealtimeCarousel';
+import { ZoomableVideo } from './ZoomableVideo';
 
 function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
   if (exhibit.media.kind === 'carousel') {
@@ -31,22 +32,11 @@ function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
 
   if (exhibit.media.kind === 'video') {
     return (
-      <video
-        className="exhibit__video"
-        controls
-        playsInline
+      <ZoomableVideo
+        captions={`/captions/${exhibit.id}.vtt`}
         poster={exhibit.media.poster}
-        preload="none"
-      >
-        <source src={exhibit.media.src} type="video/mp4" />
-        <track
-          default
-          kind="captions"
-          label="中文说明"
-          src={`/captions/${exhibit.id}.vtt`}
-          srcLang="zh-CN"
-        />
-      </video>
+        src={exhibit.media.src}
+      />
     );
   }
 
@@ -80,7 +70,6 @@ export function MuseumShowcase() {
               <p className="exhibit__eyebrow">{exhibit.eyebrow}</p>
               <h2>{exhibit.headline}</h2>
               <p className="exhibit__summary">{exhibit.summary}</p>
-              <p className="exhibit__boundary">{exhibit.boundary}</p>
               <div className="exhibit__actions">
                 <a href={exhibit.officialUrl} target="_blank" rel="noopener noreferrer">
                   进入官网 <ExternalLink aria-hidden="true" />

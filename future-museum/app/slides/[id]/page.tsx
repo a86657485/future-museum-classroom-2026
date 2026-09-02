@@ -36,7 +36,6 @@ export default async function SlidePage({
         <p className="ppt-slide__question">想一想：{exhibit.question}</p>
       </div>
       <div className="ppt-slide__source">
-        <span>{exhibit.boundary}</span>
         <span>来源：{exhibit.source} · {new URL(exhibit.officialUrl).hostname}</span>
       </div>
     </main>

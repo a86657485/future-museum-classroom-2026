@@ -29,7 +29,7 @@ export function MuseumEntrance() {
           <p className="entrance__lead">
             七项正在改变世界的科技。
             <br />
-            看见它们，体验它们，也学会判断它们。
+            看见，体验，学会判断。
           </p>
           <a className="entrance__button" href="#exhibits">
             进入科技馆
