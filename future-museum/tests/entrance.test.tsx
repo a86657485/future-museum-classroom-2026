@@ -90,4 +90,21 @@ describe('museum entrance', () => {
 
     expect(stage).not.toHaveClass('video-zoom--active');
   });
+
+  it('zooms iframe exhibits to the center of the screen on request', () => {
+    render(<Home />);
+
+    const iframe = document.querySelector('iframe.exhibit__video');
+    expect(iframe).not.toBeNull();
+    const stage = iframe!.closest('.video-zoom');
+    expect(stage).not.toHaveClass('video-zoom--active');
+
+    fireEvent.click(screen.getAllByRole('button', { name: '放大观看' })[0]);
+
+    expect(stage).toHaveClass('video-zoom--active');
+
+    fireEvent.click(screen.getByRole('button', { name: '关闭放大播放' }));
+
+    expect(stage).not.toHaveClass('video-zoom--active');
+  });
 });

@@ -6,6 +6,7 @@ import { exhibits, type Exhibit } from '../../data/exhibits';
 import { MuseumEntrance } from './MuseumEntrance';
 import { SeedanceCarousel } from './SeedanceCarousel';
 import { SeedRealtimeCarousel } from './SeedRealtimeCarousel';
+import { ZoomableIframe } from './ZoomableIframe';
 import { ZoomableVideo } from './ZoomableVideo';
 
 function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
@@ -18,16 +19,7 @@ function OfficialMedia({ exhibit }: { exhibit: Exhibit }) {
   }
 
   if (exhibit.media.kind === 'iframe') {
-    return (
-      <iframe
-        allow="fullscreen; autoplay; encrypted-media; picture-in-picture"
-        allowFullScreen
-        className="exhibit__video"
-        loading="lazy"
-        src={exhibit.media.src}
-        title={exhibit.media.title}
-      />
-    );
+    return <ZoomableIframe src={exhibit.media.src} title={exhibit.media.title} />;
   }
 
   if (exhibit.media.kind === 'video') {
